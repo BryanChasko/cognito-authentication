@@ -29,4 +29,4 @@ const Router = () => {
     </HashRouter>
   );
 };
-export default router;
+export default Router;
