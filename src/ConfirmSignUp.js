@@ -13,9 +13,9 @@ function ConfirmSignUp(props) {
       <input
         name="confirmationcode"
         placeholder="Confirmation Code"
-        onChange={(e) => {
-          e.persist();
-          props.updateForm - ListeningStateChangedEvent();
+        onChange={(event) => {
+          event.persist();
+          props.updateFormListeningStateChangedEvent();
         }}
         style={styles.input}
       />

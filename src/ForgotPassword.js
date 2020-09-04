@@ -9,9 +9,9 @@ function ForgotPassword(props) {
       <input
         name="username"
         placeholder="Username"
-        onChange={(e) => {
-          e.persist();
-          props.updateForm - State(e);
+        onChange={(event) => {
+          event.persist();
+          props.updateFormState(event);
         }}
         style={styles.input}
       />

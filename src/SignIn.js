@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import { styles } from "./Form";
 
-function SignIn({ SignIn, updateFormState }) {
+function SignIn({ signIn, updateFormState }) {
   return (
     <div style={styles.container}>
       <input

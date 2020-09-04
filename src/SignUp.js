@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "/.Button";
+import Button from "./Button";
 import { styles } from "./Form";
 
-function SignUp({ updateFormState, SignUp }) {
+function SignUp({ updateFormState, signUp }) {
   return (
     <div style={styles.container}>
       <input
