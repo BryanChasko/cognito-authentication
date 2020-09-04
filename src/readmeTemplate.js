@@ -1,26 +1,18 @@
-//ForgotPassword Component README @fileEnd
+//componentName Component README @fileEnd
+
+/* 
+REPLACE THIS COMMENT WITH IMPORT STATEMENTS 
+**
+Usage example
+import * as myModule from "my-module";
+**
+usually includes
 import React from "react";
-import { styles } from "./Form";
-import Button from "./Button";
+*/
 
-function ForgotPassword(props) {
-  return (
-    <div style={styles.container}>
-      <input
-        name="username"
-        placeholder="Username"
-        onChange={(e) => {
-          e.persist();
-          props.updateForm - State(e);
-        }}
-        style={styles.input}
-      />
-      <Button onClick={props.ForgotPassword} title="Reset password" />
-    </div>
-  );
-}
+/* REPLACE WITH COMPONENTS */
 
-export default ForgotPassword;
+/* REPLACE WITH EXPORT */
 
 // @fileEnd  ForgotPassword Component  R E A D M E   //
 /* ****************************************************
