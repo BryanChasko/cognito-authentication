@@ -9,9 +9,9 @@ function ForgotPasswordSubmit(props) {
       <input
         name="confirmationCopde"
         placeholder="Confirmation Code"
-        onChange={(e) => {
-          e.persist();
-          props.updateForm - State(e);
+        onChange={(event) => {
+          event.persist();
+          props.updateFormState(event);
         }}
         style={styles.input}
       />
@@ -19,9 +19,9 @@ function ForgotPasswordSubmit(props) {
         name="password"
         placeholder="New Password"
         type="password"
-        onChange={(e) => {
-          e.persist();
-          props.updateForm - State(e);
+        onChange={(event) => {
+          event.persist();
+          props.updateFormState(event);
         }}
         style={styles.input}
       />

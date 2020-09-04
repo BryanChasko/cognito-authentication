@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
-import SignIn from "./Signin";
+import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import ConfirmSignUp from "./ConfirmSignUp";
 import ForgotPassword from "./ForgotPassword";
@@ -17,9 +17,10 @@ async function signIn({ username, password }, setUser) {
   try {
     const user = await Auth.signIn(username, password);
     const userInfo = { username: user.username, ...user.attributes };
+    debugger;
     setUser(userInfo);
   } catch (error) {
-    console.log("Error signing up..", error);
+    console.log("Error signing in..", error);
   }
 }
 
@@ -46,7 +47,7 @@ async function confirmSignUp({ username, confirmationCode }, updateFormType) {
   }
 }
 
-async function ForgotPassword({ username }, updateFormType) {
+async function forgotPassword({ username }, updateFormType) {
   try {
     await Auth.forgotPassword(username);
 
@@ -79,81 +80,81 @@ function Form(props) {
     updateFormState(newFormState);
   }
   function renderForm() {
-    switch(formType) {
+    switch (formType) {
       case "signUp":
         return (
           <SignUp
-          signup={() => signUp(formState, updateFormType)}
-          updateFormState={event => updateForm(event)}
+            signup={() => signUp(formState, updateFormType)}
+            updateFormState={(event) => updateForm(event)}
           />
-        )
+        );
       case "signIn":
         return (
-           <SignIn
-          signin={() => signIn(formState, updateFormType)}
-          updateFormState={event => updateForm(event)}
+          <SignIn
+            signIn={() => signIn(formState, updateFormType)}
+            updateFormState={(event) => updateForm(event)}
           />
-        )
+        );
       case "forgotPassword":
         return (
           <ForgotPassword
-          forgotpassword={() => forgotPassword(formState, updateFormType)}
-          updateFormState={event => updateForm(event)}
+            forgotpassword={() => forgotPassword(formState, updateFormType)}
+            updateFormState={(event) => updateForm(event)}
           />
-        )
+        );
       case "forgotPasswordSubmit":
         return (
           <ForgotPasswordSubmit
-          forgotpasswordsubmit={() => forgotPasswordSubmit(formState, updateFormType)}
-          updateFormState={event => updateForm(event)}
+            forgotpasswordsubmit={() =>
+              forgotPasswordSubmit(formState, updateFormType)
+            }
+            updateFormState={(event) => updateForm(event)}
           />
-        )
+        );
       case "confirmSignUp":
         return (
           <ConfirmSignUp
-            confirmSignUp={()
-            => confirmSignUp(formState, updateFormType)}
-            updateFormState={event => updateForm(event)}
+            confirmSignUp={() => confirmSignUp(formState, updateFormType)}
+            updateFormState={(event) => updateForm(event)}
           />
-        )
-        default: return null
+        );
+      default:
+        return null;
     }
   }
   return (
-  <div>{renderForm()}
-  {
-    formType === "signUp"  && (
-      <p style={styles.ToggleForm}>
-        Existing Account?
-      <span style={styles.anchor}
-      onClick={() =>
-        updateFormType("signIn")}
-        >Sign In</span>
-      </p>
-    )
-  }
-  {
-    formType === "signIn"  && (
-      <>
-      <p style={styles.toggleForm}>
-        First Time?
-      <span style={styles.anchor}
-      onClick={() =>
-      updateFormType(signUp)}>
-        Sign Up</span></p>
-      <p style ={{ ...styles.toggleForm, ...styles.resetPassword}}>
-        Forgot Password
-      <span style={styles.anchor}
-      onClick={() => updateFormType("forgotPassword")}>
-        Reset Password
-      </span>
-      </p>
-      </>
-    )
-  }
-  </div>
-)
-
+    <div>
+      {renderForm()}
+      {formType === "signUp" && (
+        <p style={styles.ToggleForm}>
+          Existing Account?
+          <span style={styles.anchor} onClick={() => updateFormType("signIn")}>
+            Sign In
+          </span>
+        </p>
+      )}
+      {formType === "signIn" && (
+        <>
+          <p style={styles.toggleForm}>
+            First Time?
+            <span style={styles.anchor} onClick={() => updateFormType(signUp)}>
+              Sign Up
+            </span>
+          </p>
+          <p style={{ ...styles.toggleForm, ...styles.resetPassword }}>
+            Forgot Password
+            <span
+              style={styles.anchor}
+              onClick={() => updateFormType("forgotPassword")}
+            >
+              Reset Password
+            </span>
+          </p>
+        </>
+      )}
+    </div>
+  );
+}
 const styles = {
   container: {
     display: "flex",
